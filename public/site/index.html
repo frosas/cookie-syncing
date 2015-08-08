@@ -5,8 +5,8 @@
 <p>Browser ID: <span id="browser-id"></span></p>
 
 <script>
-    // TODO Check origin
     addEventListener('message', function (event) {
+        if (event.source != document.querySelector('iframe').contentWindow) return;
         document.querySelector('#browser-id').innerText = event.data.browserId;
     });
 </script>
