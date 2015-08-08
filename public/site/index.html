@@ -1,0 +1,12 @@
+<!doctype html>
+
+<iframe src="//localhost:8001" style="display: none"></iframe>
+
+<p>Browser ID: <span id="browser-id"></span></p>
+
+<script>
+    // TODO Check origin
+    addEventListener('message', function (event) {
+        document.querySelector('#browser-id').innerText = event.data.browserId;
+    });
+</script>

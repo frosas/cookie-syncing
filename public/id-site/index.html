@@ -1,0 +1,15 @@
+<!doctype html>
+
+<script>
+    var getBrowserId = function () {
+        var id = localStorage.getItem('browserId');
+        if (!id) {
+            id = String(Math.random());
+            localStorage.setItem('browserId', id);
+        }
+        return id;
+    };
+    
+    // TODO Check target
+    parent.postMessage({browserId: getBrowserId()}, '*');
+</script>
