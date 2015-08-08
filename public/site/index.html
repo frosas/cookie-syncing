@@ -1,12 +1,20 @@
 <!doctype html>
 
-<iframe src="//localhost:8001" style="display: none"></iframe>
-
 <p>Browser ID: <span id="browser-id"></span></p>
 
 <script>
-    addEventListener('message', function (event) {
-        if (event.source != document.querySelector('iframe').contentWindow) return;
-        document.querySelector('#browser-id').innerText = event.data.browserId;
+    var getBrowserId = function (callback) {
+        var iframe = document.createElement('iframe');
+        iframe.src = '//localhost:8001';
+        iframe.style.display = 'none';
+        addEventListener('message', function (event) {
+            if (event.source != iframe.contentWindow) return;
+            callback(event.data.browserId);
+        });
+        document.head.appendChild(iframe);
+    };
+    
+    getBrowserId(function (browserId) {
+        document.querySelector('#browser-id').innerText = browserId;
     });
 </script>
