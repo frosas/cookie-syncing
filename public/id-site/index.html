@@ -10,6 +10,24 @@
         return id;
     };
     
-    // TODO Check target
-    parent.postMessage({browserId: getBrowserId()}, '*');
+    var Url = function (url) {
+        var a = document.createElement('a');
+        a.href = url;
+        this.protocol = a.protocol;
+        this.hostname = a.hostname;
+        this.port = a.port;
+    };
+    
+    var isValidHost = function (host) {
+        var validHosts = ['mysite.com', 'mysite.co.uk'];
+        return validHosts.some(function (validHost) { return validHost == host; });
+    };
+    
+    var getPostMessageTarget = function () {
+        var url = new Url(document.referrer); // TODO What if we were redirected here?
+        if (!isValidHost(url.hostname)) return ''; // Message will fail
+        return url.protocol + '//' + url.hostname + ':' + url.port;
+    };
+    
+    parent.postMessage({browserId: getBrowserId()}, getPostMessageTarget());
 </script>
