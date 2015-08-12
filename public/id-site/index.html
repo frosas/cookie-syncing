@@ -29,5 +29,7 @@
         return url.protocol + '//' + url.hostname + ':' + url.port;
     };
     
+    console.log('pl', parent.location.href);
+    
     parent.postMessage({browserId: getBrowserId()}, getPostMessageTarget());
 </script>
