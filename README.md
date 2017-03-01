@@ -1,5 +1,7 @@
 ## PoC of the Cookie Syncing technique
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/frosas/cookie-syncing.svg)](https://greenkeeper.io/)
+
 ### Usage
 
 Add to /etc/hosts:
